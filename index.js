@@ -6,10 +6,10 @@ const questions = [
 ]
 
 
-function promptUser = {
-    inquirer.prompt(questions)
-    .then(answers) {
-        console.log(answers);
-    }
+function promptUser() {
+    // inquirer.prompt(questions)
+    // .then(answers)
+    //     console.log(answers);
+    // }
 }
 

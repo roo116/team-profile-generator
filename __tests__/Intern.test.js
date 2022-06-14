@@ -1,4 +1,6 @@
-const Intern = require('../lib/Intern');
+const Potion = require('../lib/Intern');
+
+jest.mock('../lib/Intern.js');
 
 test('creates a school object', () => {
     const intern = new Intern();
