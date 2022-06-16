@@ -1,13 +1,11 @@
-const Potion = require('../lib/Intern');
-
-jest.mock('../lib/Intern.js');
+const Intern = require('../lib/Intern');
 
 test('creates a school object', () => {
-    const intern = new Intern();
+    const intern = new Intern('UNC')
 
-    expect(intern.school).toEqual(expect.any(String));
+    expect(intern.school).toEqual('UNC');
 });
 
-test('creates a new role for interns', () => {
-    const intern = new Intern()
-})
+// test('creates a new role for interns', () => {
+//     const intern = new Intern()
+// })
