@@ -1,0 +1,40 @@
+create classes
+ - employee
+    parent class
+    - properties
+        name
+        how do I get the name?  From the prompt?
+        id
+        email
+    - methods 
+        getName()
+        getId()
+        getEmail()
+        getRole()
+            Role to return employee
+
+
+- manager 
+   extend from employee
+    - properties
+        office 
+    - methods
+        getRole - returns manager
+ - Engineer
+    extend from employee
+    - properties
+        github username
+        getGitHub()
+        getRole() returns engineer
+ - intern
+    extend from employee
+    - properties
+        school
+        getSchool()
+        getRole() returns intern
+
+index.js
+    prompts 
+
+generateHtml.js = Generates page from input
+
