@@ -1,6 +1,7 @@
 const fs = require("fs")
 const inquirer = require("inquirer")
-const { resolve } = require("path")
+const generateHtml= require('./utils/generateHtml')
+// const { resolve } = require("path")
 
 const basicQs = [
     {
