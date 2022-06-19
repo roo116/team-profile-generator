@@ -37,7 +37,7 @@ const mgrQs = [
 
 
 
-const questions = [
+const empQs = [
     {
         name: "name",
         type: "input",
@@ -91,8 +91,8 @@ const questions = [
     },
 ]
 
-const confMgr = function () {
-    inquirer
+const confMgr = () => {
+    return inquirer
         .prompt(
             {
                 name: "role",
@@ -100,33 +100,45 @@ const confMgr = function () {
                 message: "Are you the manager of this team?",
                 default: true
             })
-        .then((answers) => {
-            if (!answers.role) {
+        .then((confirmRole) => {
+            if (!confirmRole.role) {
                 console.log("You must be the manager to run this program.  Buh-bye.");
                 return;
-            }
-            getMgr()
-        })
+            } else {
+                return inquirer
+                    .prompt(mgrQs)
+                    .then((answers) => {
+                        answers.role = 'Manager';
+                        allEmployeeArr.push(answers);
+                        console.log(allEmployeeArr);
+                    })
+            }c;
+        });
+
 }
 
-const getMgr = function () {
+// const getMgr = () => {
 
-    console.log("In the getMgr function")
+//     console.log("In the getMgr function")
 
-    inquirer
-        .prompt(mgrQs)
-        .then((answers) => {
-            answers.role = 'Manager';
-            allEmployeeArr.push(answers);
-            console.log(allEmployeeArr);
-        })
+//     return inquirer
+//         .prompt(mgrQs)
+//         .then((answers) => {
+//             answers.role = 'Manager';
+//             allEmployeeArr.push(answers);
+//             console.log(allEmployeeArr);
+//         })
+// };
 
-    getEmployee()
-};
+const getEmployee = () => {
 
-const getEmployee = function () {
+    console.log(`
+    ===================
+    Enter Employee Info
+    ===================
+    `);
 
-    inquirer
+    return inquirer
         .prompt(questions)
         .then((answers) => {
             allEmployeeArr.push(answers);
@@ -135,6 +147,7 @@ const getEmployee = function () {
                 return
             } else {
                 getEmployee()
+                return;
             }
         });
 };
