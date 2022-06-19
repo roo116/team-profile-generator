@@ -92,37 +92,45 @@ const questions = [
 ]
 
 const confMgr = function () {
-    inquirer.prompt(
-        {
-            name: "role",
-            type: "confirm",
-            message: "Are you the manager of this team?",
-            default: true
-        }).then((answers)=>{
-            console.log(answers.role);
-            if(!answers.role) {
+    inquirer
+        .prompt(
+            {
+                name: "role",
+                type: "confirm",
+                message: "Are you the manager of this team?",
+                default: true
+            })
+        .then((answers) => {
+            if (!answers.role) {
                 console.log("You must be the manager to run this program.  Buh-bye.");
                 return;
             }
-            getMgr()
-        })
+})
 }
 
-const getMgr = function(){
+const getMgr = function () {
 
     console.log("In the getMgr function")
-// inquirer
-//     .prompt(mgrQs)
-//     .then((answers) => {
-//         if (false) {
-            
-//             return;
-//         }
 
-//     })
-           
-            
-           
+    inquirer
+        .prompt(mgrQs)
+        .then((answers) => {
+            answers.role = 'Manager';
+            allEmployeeArr.push(answers);
+            console.log(allEmployeeArr);
+        })
+    // inquirer
+    //     .prompt(mgrQs)
+    //     .then((answers) => {
+    //         if (false) {
+
+    //             return;
+    //         }
+
+    //     })
+
+
+
 };
 
 const getEmployee = function () {
