@@ -105,7 +105,8 @@ const confMgr = function () {
                 console.log("You must be the manager to run this program.  Buh-bye.");
                 return;
             }
-})
+            getMgr()
+        })
 }
 
 const getMgr = function () {
@@ -119,18 +120,8 @@ const getMgr = function () {
             allEmployeeArr.push(answers);
             console.log(allEmployeeArr);
         })
-    // inquirer
-    //     .prompt(mgrQs)
-    //     .then((answers) => {
-    //         if (false) {
 
-    //             return;
-    //         }
-
-    //     })
-
-
-
+    getEmployee()
 };
 
 const getEmployee = function () {
@@ -148,7 +139,6 @@ const getEmployee = function () {
         });
 };
 
-// getEmployee()
 confMgr()
 
 
