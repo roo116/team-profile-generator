@@ -3,81 +3,88 @@
 const { Console } = require("console")
 const fs = require("fs")
 const inquirer = require("inquirer")
+const { listenerCount } = require("process")
 const Employee = require('./lib/Employee')
 const Engineer = require('./lib/Engineer')
 const Intern = require('./lib/Intern')
 const Manager = require('./lib/Manager')
 const generateHtml = require('./utils/generateHtml')
+const allEmployeeArr = []
 // const { resolve } = require("path")
 
-const basicQs = [
+const questions = [
     {
-        type: "input",
         name: "name",
+        type: "input",
         message: "Please input employee's name"
     },
     {
-        type: "input",
         name: "id",
+        type: "input",
         message: "Please assign employee id"
     },
     {
-        type: "input",
         name: "email",
+        type: "input",
         message: "please enter email address"
     },
     {
-        type: 'list',
         name: 'role',
+        type: 'list',
         message: 'Please select job description',
-        choices: ['Manager', 'Engineer', 'Intern']
-
-    }
-]
-
-const mgrQs = [
+        choices: ['Manager', 'Engineer', 'Intern'],
+    },
     {
-        type: "input",
-        name: "office",
-        message: "What is the office number (Required)"
-    }
-]
-
-const engQs = [
+        type: 'input',
+        name: 'officeNum',
+        message: "Enter manager's office number",
+        when: function (answers) {
+            return answers.role === 'Manager'
+        },
+    },
     {
-        type: "input",
-        name: "github",
-        message: "Please enter GitHub userid"
-    }
-]
-
-const intQs = [
+        type: 'input',
+        name: 'github',
+        message: "Please enter GitHub userid",
+        when: function (answers) {
+            return answers.role === 'Engineer'
+        },
+    },
     {
-        type: "input",
-        name: "school",
-        message: "Enter school name"
-    }
+        type: 'input',
+        name: 'school',
+        message: "Enter intern's school name",
+        when: function (answers) {
+            return answers.role === 'Intern'
+        },
+    },
+    {
+        type: 'confirm',
+        name: 'askAgain',
+        message: 'Enter another employee?',
+        default: true,
+    },
 ]
 
-function getEmployee() {
-    const allEmployeeArr = []
-    this.manager;
-    this.engineer;
-    this.interm;
 
 
 
-    getEmployee.prototype.startMgr = function () {
-        console.log("Input your team information, starting with you as manager.")
-        inquirer
-            .prompt(basicQs)
-            .then((answers) => {
-                console.log(answers)
-            })
-
-    }
-
+const getEmployee = function () {
+    console.log("Input your team information, starting with you as manager.")
+    inquirer
+        .prompt(questions)
+        .then((answers) => {
+            allEmployeeArr.push(answers);
+            console.log(allEmployeeArr);
+            if (!answers.askAgain) {
+                return
+            } else {
+                getEmployee()
+            }
+        });
 };
+
+
 // ).then()
 //     .prompt(mgrQs)
 //     .then((mAnswers) => {
@@ -191,7 +198,7 @@ function getEmployee() {
 
 // promptBasic()
 
-new getEmployee().startMgr()
+getEmployee()
 
 
 

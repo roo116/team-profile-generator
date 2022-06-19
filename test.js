@@ -1,13 +1,16 @@
-function getEmployee() {
-    allEmployeeArr = []
-    console.log(allEmployeeArr)
-    this.manager;
-    console.log(this.manager)
-    this.engineer;
-    console.log(this.engineer)
-    this.interm;
-    console.log(this.intern)
-};
+const inquirer = require("inquirer");
 
-getEmployee()
-
+inquirer.prompt([{
+    name: "food",
+    type: "list",
+    message: "What do you want",
+    choices: [ "Calzone", "Pizza", "Sub" ]
+  }, {
+    name: "toppings",
+    type: "list",
+    when: function( answers ) {
+      // Only run if user answered Pizza to the first prompt
+      return answers.food === "Pizza";
+    },
+    // etc
+  }]);
