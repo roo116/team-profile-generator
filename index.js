@@ -32,12 +32,18 @@ const mgrQs = [
         name: "officeNum",
         type: "input",
         message: "Enter you office number"
+    },
+    {
+        name: "role",
+        type: "list",
+        message: "Confirm your role as Manager",
+        default: ['Manager']
     }
 ]
 
 
 
-const empQs = [
+const questions = [
     {
         name: "name",
         type: "input",
@@ -91,68 +97,53 @@ const empQs = [
     },
 ]
 
-const confMgr = () => {
-    return inquirer
-        .prompt(
-            {
-                name: "role",
-                type: "confirm",
-                message: "Are you the manager of this team?",
-                default: true
-            })
-        .then((confirmRole) => {
-            if (!confirmRole.role) {
-                console.log("You must be the manager to run this program.  Buh-bye.");
-                return;
-            } else {
-                return inquirer
-                    .prompt(mgrQs)
-                    .then((answers) => {
-                        answers.role = 'Manager';
-                        allEmployeeArr.push(answers);
-                        console.log(allEmployeeArr);
-                    })
-            }c;
-        });
-
-}
-
-// const getMgr = () => {
-
-//     console.log("In the getMgr function")
-
+// const confMgr = () => {
 //     return inquirer
-//         .prompt(mgrQs)
-//         .then((answers) => {
-//             answers.role = 'Manager';
-//             allEmployeeArr.push(answers);
-//             console.log(allEmployeeArr);
-//         })
+//         .prompt(
+//             {
+//                 name: "role",
+//                 type: "confirm",
+//                 message: "Are you the manager of this team?",
+//                 default: true
+//             })
+//         .then((confirmRole) => {
+//             if (!confirmRole.role) {
+//                 console.log("You must be the manager to run this program.  Buh-bye.");
+//                 return;
+//             }
+//         });
 // };
 
-const getEmployee = () => {
+const promptMgr = () => {
 
-    console.log(`
-    ===================
-    Enter Employee Info
-    ===================
-    `);
+    console.log("In the promptMgr function")
 
     return inquirer
-        .prompt(questions)
+        .prompt(mgrQs)
+        .then((answers) => {
+            answers.role = 'Manager';
+            allEmployeeArr.push(answers);
+            console.log(allEmployeeArr);
+        })
+};
+
+const getEmployee = () => {
+console.log (`
+============================
+Enter your information first
+and then enter your staff's 
+information
+============================
+`)
+    return inquirer
+        .prompt(mgrQs)
         .then((answers) => {
             allEmployeeArr.push(answers);
             console.log(allEmployeeArr);
-            if (!answers.askAgain) {
-                return
-            } else {
-                getEmployee()
-                return;
-            }
-        });
+        }).then()
 };
 
-confMgr()
+promptMgr()
 
 
 
