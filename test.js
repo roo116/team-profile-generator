@@ -80,6 +80,7 @@ const empQs = [
   },
 ]
 
+// working on getting data from the array
 getArrData = (allEmployeeArr) => {
   allEmployeeArr.filter(role)
 

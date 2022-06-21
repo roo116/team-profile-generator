@@ -4,17 +4,17 @@
 
 const { restoreDefaultPrompts } = require("inquirer")
 
-const createCard = (role) => {
-  if(role==="Manager") {
+// const createCard = (role) => {
+//   if(role==="Manager") {
     
-    const ({ name, id, email, office }) = empData;
+//     const ({ name, id, email, office }) = empData;
 
-    return
-    `
+//     return
+//     `
     
-    `
-  }
-}
+//     `
+//   }
+// }
 
 
 return 
@@ -45,7 +45,7 @@ return
       <div class="card m-1" style="width: 18rem;">
         <div class="card-header">
           <h2 class="fs-3">${name}</h2>
-          <h3 class="fs-5">${title}<span><i class=`fa-solid fa-mug-hot"></i></span></h3>
+          <h3 class="fs-5">${title}<span><i class=fa-solid fa-mug-hot"></i></span></h3>
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">ID: </li>
@@ -57,7 +57,7 @@ return
 
       <div class="card m-1" style="width: 18rem;">
         <div class="card-header">
-          <h2 class="fs-3"> Employee Name</h2>
+          <h2 class="fs-3">Employee Name</h2>
           <h3 class="fs-5">Title <span><i class="fa-solid fa-mug-hot"></i></span></h3>
         </div>
         <ul class="list-group list-group-flush">
