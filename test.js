@@ -143,17 +143,28 @@ function getEmployee() {
               const { office } = answers
               const manager = new Manager(name, id, email, office)
               allEmployeeArr.push(manager)
+              console.log('>> Manager switch ', allEmployeeArr)
               break;
 
             case "Engineer":
               const { github } = answers
               const engineer = new Engineer(name, id, email, github)
               allEmployeeArr.push(engineer)
+              console.log('>> Engineer switch ', allEmployeeArr)
+              break;
+
+            case "Intern":
+              const { school } = answers
+              const intern = new Intern(name, id, email, school)
+              allEmployeeArr.push(intern)
+              console.log('>> Intern switch ', allEmployeeArr)
               break;
           }
           if (answers.askAgain) {
             this.startTeam()
           }
+          console.log(allEmployeeArr)
+          return allEmployeeArr
         })
     }
   };

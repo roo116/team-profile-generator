@@ -114,19 +114,6 @@ const questions = [
 //         });
 // };
 
-const promptMgr = () => {
-
-    console.log("In the promptMgr function")
-
-    return inquirer
-        .prompt(mgrQs)
-        .then((answers) => {
-            answers.role = 'Manager';
-            allEmployeeArr.push(answers);
-            console.log(allEmployeeArr);
-        })
-};
-
 const getEmployee = () => {
 console.log (`
 ============================
