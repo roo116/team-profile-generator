@@ -38,3 +38,43 @@ index.js
 
 generateHtml.js = Generates page from input
 
+create template - done
+generate the static html - done
+write static html to file
+
+write static header
+
+write card section = static main +
+
+dynamic html
+    - grab the following data from the allEmployeesArr from index.js
+    - employee name
+    - employee Role
+    if team.manager then
+    update card with
+        name
+        Role + icon
+        ID:
+        email + href
+        office number
+        write card html into page template to be generated 
+    if Engineer 
+    update care with 
+        name
+        role + icon
+        id
+        email + href
+        github name + href link(my github repo)
+    if Intern 
+    update card with 
+        name
+        role + icon
+        id
+        email + href
+        school name 
+    
+    write footer static html
+
+    write file to DIST folder 
+
+

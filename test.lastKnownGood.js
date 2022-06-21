@@ -80,10 +80,6 @@ const empQs = [
   },
 ]
 
-getArrData = (allEmployeeArr) => {
-  allEmployeeArr.filter(role)
-
-}
 function getEmployee() {
   const allEmployeeArr = []
   this.manager;
