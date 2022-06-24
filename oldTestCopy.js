@@ -5,6 +5,7 @@ const Intern = require("./lib/Intern")
 const Manager = require("./lib/Manager")
 const generateHtml = require("./src/generateHtml")
 const allEmployees = []
+const htmlData = []
 
 const mgrQs = [
     {
@@ -82,16 +83,23 @@ const empQs = [
 
 // }
 
-function getEmployees() {
+function getEmployee() {
     // const allEmployeeArr = []
     // this.manager;
     // this.engineer;
     // this.interm;
     // this.arr = []
 
-    getManager()
 
-    function getManager() {
+
+    getEmployee.prototype.startMgr = function () {
+        console.log(
+            `
+        =======================
+        INPUT YOUR INFORMATION
+        =======================
+        
+        `)
         inquirer
             .prompt(mgrQs)
             .then((answers) => {
@@ -102,104 +110,70 @@ function getEmployees() {
                 // console.log(">>> this manager = ", this.manager)
 
                 allEmployees.push(manager);
-                // startTeam()
-            //    allEmployees.forEach(employee => console.log("this is the element with the ", employee, " index"))
 
-               const coolEmployeelArr = allEmployees.map(employee => {
-                 console.log(employee);
-                 return `${employee} are really cool animals.`;
+                this.startTeam()
 
-               });
-               console.log(coolEmployeelArr)
             })
-    };
 
-    function startTeam() {
-        console.log(
-            `
+        getEmployee.prototype.startTeam = function () {
+            console.log(
+                `
             =============================
             INPUT EMPLOYEE INFORMATION
             =============================
             
             `
-        )
-        inquirer
-            .prompt(empQs)
-            .then((answers) => {
-                const { name, id, email } = answers
+            )
+            inquirer
+                .prompt(empQs)
+                .then((answers) => {
+                    const { name, id, email } = answers
 
-                switch (answers.role) {
-                    case "Engineer":
-                        const { github } = answers
-                        let engineer = new Engineer(name, id, email, github)
-                        // allEmployeeArr.push(engineer)
-                        allEmployees.push(engineer)
-                        break;
+                    switch (answers.role) {
+                        case "Engineer":
+                            const { github } = answers
+                            let engineer = new Engineer(name, id, email, github)
+                            // allEmployeeArr.push(engineer)
+                            allEmployees.push(engineer)
+                            break;
 
-                    case "Intern":
-                        const { school } = answers
-                        let intern = new Intern(name, id, email, school)
-                        // allEmployeeArr.push(intern)
-                        allEmployees.push(intern)
-                        break;
-                }
-                if (answers.askAgain) {
-                    startTeam()
-                } else {
-                    console.log(allEmployees)
-                    return allEmployees
-                }
-            })
-           
-    }
+                        case "Intern":
+                            const { school } = answers
+                            let intern = new Intern(name, id, email, school)
+                            // allEmployeeArr.push(intern)
+                            allEmployees.push(intern)
+                            break;
+                    }
+                    if (answers.askAgain) {
+                        this.startTeam()
+                    } else {
+                        console.log(allEmployees)
+                        return allEmployees
+                    }
+                })
+        }
 
-    function addManager(arr) {
-
-        let role = arr.filter('Manager');
-        console.log(role)
-
-
-
-    }
-
-    function addEngineer(data) {
-        //return template literal for the card so just the static 
-        return
-        `
-        <div class="card m-1" style="width: 18rem;">
-        <div class="card-header">
-          <h2 class="fs-3">Engineer name ${data.name}</h2>
-          <h3 class="fs-5">Title ${data.role} <span><i class="fa-solid fa-mug-hot"></i></span></h3>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">ID: </li>
-          <li class="list-group-item">Email: </li>
-          <li class="list-group-item">Variable</li>
-        </ul>
-      </div>
-      `
-
-
-    }
-
-   
-
-
-
-
-    // function addIntern() { }
-
-    // function buildHTML() { }
+    };
 
 };
 
-getEmployees()
+
+
+new getEmployee().startMgr()
+
+function addManager() {
+    let role = allEmployees.filter('Manager');
+    console.log(role)
+
+
+}
 
 // const getArrData = () =>{
 
 // if(role ==="Manager"){
 //     const managerCard = generateManager(employee);
 //     cardArr.push(managerCard);
+// }
 // }
 // if(role ==="Engineer"){
 //     const engineerCard = generateEngineer(employee);

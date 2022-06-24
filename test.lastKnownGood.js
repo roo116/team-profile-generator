@@ -71,17 +71,11 @@ const empQs = [
     when: function (answers) {
       return answers.role === 'Intern'
     },
-  },
-  {
-    name: "askAgain",
-    type: "confirm",
-    message: "Enter another employee?",
-    default: true,
-  },
+  }
 ]
 
 function getEmployee() {
-  const allEmployeeArr = []
+
   this.manager;
   this.engineer;
   this.interm;
@@ -89,7 +83,7 @@ function getEmployee() {
 
 
 
-  getEmployee.prototype.startMgr = function () {
+ const startMgr = function () {
     console.log(
       `
       =======================
