@@ -82,28 +82,39 @@ const empQs = [
 
 // }
 
-function getArrayData (data) {
-    //to get values
-for (let value of Object.values(data)) {
-   console.log(value);
-}
-// //Output: 1, 2, 3
+// function getArrayData (data) {
+// //     //to get values
+// // for (let value of Object.values(data)) {
+// //    console.log(value);
+// // }
+// // // //Output: 1, 2, 3
 
-// //to get keys
-// for (let value of Object.keys(data)) {
-//     console.log(value);
-// }
-//Output: one, two, three
-
+// // // //to get keys
+// // // for (let value of Object.keys(data)) {
+// // //     console.log(value);
+// // // }
+// // //Output: one, two, three
 // let result = data.filter(findRole)
 
 // function findRole(data) {
-//     if Object.values(data)
+
 // }
 
-// })
+// // })
 
- }
+// }
+
+const getManagerData = (data) => {
+    const managerEmps = data.filter((emp) => {
+      if (data.role === "Manager") {
+        console.log("Test passed")
+        return true;
+      } else {
+        console.log("Test failed")
+        return false;
+      }
+    });
+  };
 
 function getEmployees() {
     // const allEmployeeArr = []
@@ -121,13 +132,14 @@ function getEmployees() {
                 answers.role = 'Manager'
                 const { name, id, email, office } = answers
 
-                let manager = new Manager(name, id, email, office)
+                // let manager = new Manager(name, id, email, office)
                 // console.log(">>> this manager = ", this.manager)
                 // manager.role = Manager.getRole();
 
-                allEmployees.push(manager);
+                allEmployees.push(answers);
+                console.log(allEmployees);
                 // startTeam()
-                getArrayData(allEmployees)          
+                // getArrayData(allEmployees)          
             })
     };
 
@@ -148,16 +160,18 @@ function getEmployees() {
                 switch (answers.role) {
                     case "Engineer":
                         const { github } = answers
-                        let engineer = new Engineer(name, id, email, github)
+                        answers.role = "Engineer"
+                        // let engineer = new Engineer(name, id, email, github)
                         // allEmployeeArr.push(engineer)
-                        allEmployees.push(engineer)
+                        allEmployees.push(answers)
                         break;
 
                     case "Intern":
                         const { school } = answers
-                        let intern = new Intern(name, id, email, school)
+                        answers.role = "Intern"
+                        // let intern = new Intern(name, id, email, school)
                         // allEmployeeArr.push(intern)
-                        allEmployees.push(intern)
+                        allEmployees.push(answers)
                         break;
                 }
                 if (answers.askAgain) {
