@@ -11,26 +11,25 @@ const Intern = require("../lib/Intern")
 
 
 
-// generate Manager Card function
-// const genMgrCard = (employeeArr) => {
-//   employeeArr.filter((Manager) => )
-//   return
-//   ` <div class="card m-1" style="width: 18rem;">
-//   <div class="card-header">
-//     <h2 class="fs-3">${Manager.name}</h2>
-//     <h3 class="fs-5">${Manager.getRole()} <span><i class="fa-solid fa-mug-hot"></i></span></h3>
-//   </div>
-//   <ul class="list-group list-group-flush">
-//     <li class="list-group-item">ID: ${Manager.id} </li>
-//     <li class="list-group-item">Email: ${Manager.email} </li>
-//     <li class="list-group-item">Office Number: ${Manager.office} </li>
-//   </ul>
-// </div>
-//   `
-// }
+
+const genMgrCard = (employee) => {
+    return
+  ` <div class="card m-1" style="width: 18rem;">
+  <div class="card-header">
+    <h2 class="fs-3">${mgr.name}</h2>
+    <h3 class="fs-5">${mgr.role} <span><i class="fa-solid fa-mug-hot"></i></span></h3>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">ID: ${mgr.id} </li>
+    <li class="list-group-item">Email: ${mgr.email} </li>
+    <li class="list-group-item">Office Number: ${mgr.office} </li>
+  </ul>
+</div>
+  `
+}
 
 
-const createMgrCard = employeeArr => {
+const createMgrCard = employee => {
   // get array of employee cards, starting with Manager
   const cardArr = projectsArr.filter(employee => {
     if (Manager) {
