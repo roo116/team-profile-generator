@@ -3,7 +3,7 @@ const Manager = require("../lib/Manager");
 const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern")
 
-  
+
 
 
 
@@ -12,21 +12,36 @@ const Intern = require("../lib/Intern")
 
 
 // generate Manager Card function
-function generateMgrCard() {
-  return
-  ` <div class="card m-1" style="width: 18rem;">
-  <div class="card-header">
-    <h2 class="fs-3">${name}</h2>
-    <h3 class="fs-5">${Manager.getRole()} <span><i class="fa-solid fa-mug-hot"></i></span></h3>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">ID: ${id} </li>
-    <li class="list-group-item">Email: ${email} </li>
-    <li class="list-group-item">Office Number: ${office} </li>
-  </ul>
-</div>
-  `
-}
+// const genMgrCard = (employeeArr) => {
+//   employeeArr.filter((Manager) => )
+//   return
+//   ` <div class="card m-1" style="width: 18rem;">
+//   <div class="card-header">
+//     <h2 class="fs-3">${Manager.name}</h2>
+//     <h3 class="fs-5">${Manager.getRole()} <span><i class="fa-solid fa-mug-hot"></i></span></h3>
+//   </div>
+//   <ul class="list-group list-group-flush">
+//     <li class="list-group-item">ID: ${Manager.id} </li>
+//     <li class="list-group-item">Email: ${Manager.email} </li>
+//     <li class="list-group-item">Office Number: ${Manager.office} </li>
+//   </ul>
+// </div>
+//   `
+// }
+
+
+const createMgrCard = employeeArr => {
+  // get array of employee cards, starting with Manager
+  const cardArr = projectsArr.filter(employee => {
+    if (Manager) {
+      console.log("YES!!!!")
+      return true;
+
+    } else {
+      console.log("NO!!!!")
+      return false;
+    }
+  });
 
 // <h1>${manager.getName()}</h1>
 
@@ -59,8 +74,10 @@ return `
 
 //}
 
-return
-`
+boilerPlateHtml = () => {
+
+  return
+  `
       < !DOCTYPE html >
         <html lang="en">
 
@@ -84,72 +101,15 @@ return
 
                   <main class="container">
                     <div class="d-flex justify-content-around">
-                      <div class="card m-1" style="width: 18rem;">
-                        <div class="card-header">
-                          <h2 class="fs-3">${name}</h2>
-                          <h3 class="fs-5">${title}<span><i class=fa-solid fa-mug-hot"></i></span></h3>
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: </li>
-                        <li class="list-group-item">Email: </li>
-                        <li class="list-group-item">Office Number: </li>
-                      </ul>
-                    </div>
-
-
-                    <div class="card m-1" style="width: 18rem;">
-                      <div class="card-header">
-                        <h2 class="fs-3">Employee Name</h2>
-                        <h3 class="fs-5">Title <span><i class="fa-solid fa-mug-hot"></i></span></h3>
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: </li>
-                        <li class="list-group-item">Email: </li>
-                        <li class="list-group-item">Variable</li>
-                      </ul>
-                    </div>
-
-                    <div class="card m-1" style="width: 18rem;">
-                      <div class="card-header">
-                        <h2 class="fs-3"> Employee Name</h2>
-                        <h3 class="fs-5">Title <span><i class="fa-solid fa-mug-hot"></i></span></h3>
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: </li>
-                        <li class="list-group-item">Email: </li>
-                        <li class="list-group-item">Variable</li>
-                      </ul>
-                    </div>
-
-                    <div class="card m-1" style="width: 18rem;">
-                      <div class="card-header">
-                        <h2 class="fs-3"> Employee Name</h2>
-                        <h3 class="fs-5">Title <span><i class="fa-solid fa-mug-hot"></i></span></h3>
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: </li>
-                        <li class="list-group-item">Email: </li>
-                        <li class="list-group-item">Variable</li>
-                      </ul>
-                    </div>
-
-                    <div class="card m-1" style="width: 18rem;">
-                      <div class="card-header">
-                        <h2 class="fs-3"> Employee Name</h2>
-                        <h3 class="fs-5">Title <span><i class="fa-solid fa-mug-hot"></i></span></h3>
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID: </li>
-                        <li class="list-group-item">Email: </li>
-                        <li class="list-group-item">Variable</li>
-                      </ul>
-                    </div>
+                      
+                    ${employeeCardsHere}
 
                   </main>
 
                 </body>
 
               </html>
-              `
-
-module.exports = generateHtml;
+            }              `
+          };
+        };
+  module.exports = createMgrCard;

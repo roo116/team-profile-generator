@@ -1,11 +1,19 @@
+
+// importing all the stuff and any global variables
+const { Console } = require("console")
 const fs = require("fs")
 const inquirer = require("inquirer")
 const Engineer = require("./lib/Engineer")
 const Intern = require("./lib/Intern")
 const Manager = require("./lib/Manager")
+const createMgrCard = require("./src/generateHtml")
 const generateHtml = require("./src/generateHtml")
-const allEmployees = []
+const employeeArr = []
+const mgrArr = []
+const engArr = []
+const intArr = []
 
+// manager questions array
 const mgrQs = [
     {
         name: "name",
@@ -29,7 +37,7 @@ const mgrQs = [
     },
 ]
 
-
+// employee questions array, assuming only role types are Engineer or Intern
 const empQs = [
     {
         name: "role",
@@ -76,42 +84,10 @@ const empQs = [
     },
 ]
 
-// // working on getting data from the array
-// getArrData = (allEmployeeArr) => {
-//     allEmployeeArr.filter(role)
-
-// }
-
-function getArrayData (data) {
-    //to get values
-for (let value of Object.values(data)) {
-   console.log(value);
-}
-// //Output: 1, 2, 3
-
-// //to get keys
-// for (let value of Object.keys(data)) {
-//     console.log(value);
-// }
-//Output: one, two, three
-
-// let result = data.filter(findRole)
-
-// function findRole(data) {
-//     if Object.values(data)
-// }
-
-// })
-
- }
-
+// prompt for the team members
 function getEmployees() {
-    // const allEmployeeArr = []
-    // this.manager;
-    // this.engineer;
-    // this.interm;
-    // this.arr = []
 
+    // starts with manager
     getManager()
 
     function getManager() {
@@ -122,16 +98,18 @@ function getEmployees() {
                 const { name, id, email, office } = answers
 
                 let manager = new Manager(name, id, email, office)
-                // console.log(">>> this manager = ", this.manager)
-                // manager.role = Manager.getRole();
 
-                allEmployees.push(manager);
-                // startTeam()
-                getArrayData(allEmployees)          
+                // push new manager to employeeArr
+                employeeArr.push(manager);
+                // createMgrCard(employeeArr);
+
+                // call the team function
+                getTeam()
             })
     };
 
-    function startTeam() {
+    // now get employees != 'Manager'
+    function getTeam() {
         console.log(
             `
             =============================
@@ -145,35 +123,68 @@ function getEmployees() {
             .then((answers) => {
                 const { name, id, email } = answers
 
+                // based on the role, push an Engineer or push an Intern to employeeArr
                 switch (answers.role) {
                     case "Engineer":
                         const { github } = answers
                         let engineer = new Engineer(name, id, email, github)
-                        // allEmployeeArr.push(engineer)
-                        allEmployees.push(engineer)
+                        employeeArr.push(engineer)
+                        // createEngCard(employeeArr);
                         break;
 
                     case "Intern":
                         const { school } = answers
                         let intern = new Intern(name, id, email, school)
-                        // allEmployeeArr.push(intern)
-                        allEmployees.push(intern)
+                        employeeArr.push(intern)
+                        // createIntCard(employeeArr);
                         break;
                 }
+                // rinse and repeat
                 if (answers.askAgain) {
-                    startTeam()
+                    getTeam()
                 } else {
-                    console.log(allEmployees)
-                    return allEmployees
+                    console.log(employeeArr)
+                    return employeeArr
                 }
+                
             })
            
+        // createCard(employeeArr)
+
+        // function createCard(data) {
+        //     console.log("in the createCard function")
+
+        //     // for (let value2 of Object.values(data[0])) {
+        //     //     console.log(value2)
+
+        // }
+
     }
 
-    function addManager(arr) {
+    function createMgrCard(data) {
+        manager = data
+       const {name, id, email, office} = manager
+       manager.role = "Manager"
+       console.log("this is the manager object  ", manager)
+       console.log("this is the manager name ", data.name)
+       console.log("this is the manager.id ", data.id)
+       console.log("this is the manager.role " , data.role)
+        
+    }
 
-        let role = arr.filter('Manager');
-        console.log(role)
+    // now create the employee cards
+
+
+    // function to map through employeeArr
+    //  if the employee is a manager, then create a manager card and push that into the cardArr
+    //  if the employee is an engineer, then create an engineer card and push that into the cardArr
+    //  if the employee is an intern, then create an intern card and push that into the cardArr
+
+
+
+    function addMgrCard(arr) {
+
+
 
 
 
@@ -199,18 +210,21 @@ function getEmployees() {
 
     }
 
-   
+
 
 
 
 
     // function addIntern() { }
 
-    // function buildHTML() { }
+    function buildHTML() {
+        boilerPlateHtml()
+    }
 
 };
 
 getEmployees()
+// .then(generateHtml)
 
 // const getArrData = () =>{
 
@@ -232,4 +246,48 @@ getEmployees()
 //   return renderPage
 // };
 
+// // working on getting data from the array
+// getArrData = (allEmployeeArr) => {
+//     allEmployeeArr.filter(role)
+
+// }
+
+// function getEmpTest(data) {
+//    let result = data.filter(employee => employee.includes('Manager'){
+//         console.log(employee)
+
+//    })
+
+//         // if(employee == "Manager" ){
+//             console.log(employee)
+//         // } else {
+//             // console.log("NOPE!!!!")
+//         // }
+//     }
+//     // if (license === "none") {
+//     //     return ''
+//     // }
+//     // let result = badgeArr.find(n => n.licenseName === license);
+//     // const { licenseBadge } = result
+//     // return licenseBadge
+
+
+
+
+// };
+// //Output: 1, 2, 3
+
+// //to get keys
+// for (let value of Object.keys(data)) {
+//     console.log(value);
+// }
+//Output: one, two, three
+
+// let result = data.filter(findRole)
+
+// function findRole(data) {
+//     if Object.values(data)
+// }
+
+// })
 

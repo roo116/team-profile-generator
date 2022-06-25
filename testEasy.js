@@ -82,39 +82,6 @@ const empQs = [
 
 // }
 
-// function getArrayData (data) {
-// //     //to get values
-// // for (let value of Object.values(data)) {
-// //    console.log(value);
-// // }
-// // // //Output: 1, 2, 3
-
-// // // //to get keys
-// // // for (let value of Object.keys(data)) {
-// // //     console.log(value);
-// // // }
-// // //Output: one, two, three
-// let result = data.filter(findRole)
-
-// function findRole(data) {
-
-// }
-
-// // })
-
-// }
-
-const getManagerData = (data) => {
-    const managerEmps = data.filter((emp) => {
-      if (data.role === "Manager") {
-        console.log("Test passed")
-        return true;
-      } else {
-        console.log("Test failed")
-        return false;
-      }
-    });
-  };
 
 function getEmployees() {
     // const allEmployeeArr = []
@@ -137,8 +104,7 @@ function getEmployees() {
                 // manager.role = Manager.getRole();
 
                 allEmployees.push(answers);
-                console.log(allEmployees);
-                // startTeam()
+                startTeam()
                 // getArrayData(allEmployees)          
             })
     };
