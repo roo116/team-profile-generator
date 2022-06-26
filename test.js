@@ -6,7 +6,7 @@ const { createInterface } = require("readline");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-const generatePage = require("./src/generateHtml");
+const generatePage = require("./src/page-template");
 const employeeArr = [];
 const mgrArr = [];
 const engArr = [];
@@ -84,20 +84,28 @@ const empQs = [
   },
 ];
 
-function getManager() {
-  inquirer.prompt(mgrQs).then((answers) => {
-    const { name, id, email, office } = answers;
+  const promptManager = () => {
+    return inquirer.prompt(mgrQs).then((answers) => {
+      const { name, id, email, office } = answers;
 
-    let manager = new Manager(name, id, email, office);
+      let manager = new Manager(name, id, email, office);
 
-    // push new manager to employeeArr
-    employeeArr.push(manager);
+      // push new manager to employeeArr
+      employeeArr.push(manager);
 
-    // call the team function
-    // getTeam();
-    createCard(employeeArr)
-  });
-} // end of get manager
+      if(!employeeArr[0]) {
+        return false;
+      } else {
+        console.log(employeeArr)
+        return employeeArr;
+      }
+        
+
+
+      // call the team function
+
+    });
+  }// end of get manager
 
 // now get employees != 'Manager'
 function getTeam() {
@@ -129,32 +137,15 @@ function getTeam() {
     }
     // rinse and repeat
     if (answers.askAgain) {
-      getTeam();
+      return getTeam();
     } else {
-      createCard(employeeArr);
+      console.log(employeeArr)
+      return employeeArr;
     }
   }); // end of getTeam()  
 };
 
-function createCard(data) {
-  const results = data.forEach((employee) => {
-    if (employee.getRole() === "Manager") {
-      mgrArr.push(employee);
-      console.log("this is the manager array", mgrArr);
-    }
 
-    if (employee.getRole() === "Engineer") {
-      engArr.push(employee);
-      console.log("this is the engineer array ", engArr)
-    };
-
-    if (employee.getRole() === "Intern") {
-      intArr.push(employee)
-      console.log("this is the intern array ", intArr)
-    }
-    genMgrCard(mgrArr);
-    })
-  };
 
 // function genHtmlPage(employee) {
 //   let mgrCard = genMgrCard(mgrArr)
@@ -163,7 +154,12 @@ function createCard(data) {
 
 // }
 
-getManager()
+promptManager()
+.then(getTeam)
+  // .then(createCard(employeeArr))
+// .then(createCard => {
+//   return createCard(employeeArr);
+// })
 // prompt for the team members
 // function getEmployees() {
 //   // starts with manager

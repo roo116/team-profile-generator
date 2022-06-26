@@ -1,22 +1,38 @@
 // create the about section
-const generateMgr = employee => {
-  if (!employee) {
-    return '';
+function createCard(data) {
+  if (!data) {
+    return
   }
-return
-      ` <div class="card m-1" style="width: 18rem;">
-    <div class="card-header">
-      <h2 class="fs-3">${manager.name}</h2>
-      <h3 class="fs-5">${manager.role} <span><i class="fa-solid fa-mug-hot"></i></span></h3>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">ID: ${manager.id} </li>
-      <li class="list-group-item">Email: ${manager.email} </li>
-      <li class="list-group-item">Office Number: ${manager.office} </li>
-    </ul>
-  </div>
-    `
+  const results = data.forEach((employee) => {
+    if (employee.getRole() === "Manager") {
+      htmlArr.push(employee);
+      console.log("this is the manager", htmlArr);
+    }
+
+    if (employee.getRole() === "Engineer") {
+      engArr.push(employee);
+      console.log("this is the engineer array ", htmlArr)
+    };
+
+    if (employee.getRole() === "Intern") {
+      intArr.push(employee)
+      console.log("this is the intern array ", htmlArr)
+    }
+  })
 };
+// const mgrCard = 
+//       ` <div class="card m-1" style="width: 18rem;">
+//     <div class="card-header">
+//       <h2 class="fs-3">${employee.name}</h2>
+//       <h3 class="fs-5">${employee.getrole()} <span><i class="fa-solid fa-mug-hot"></i></span></h3>
+//     </div>
+//     <ul class="list-group list-group-flush">
+//       <li class="list-group-item">ID: ${employee.id} </li>
+//       <li class="list-group-item">Email: ${manager.email} </li>
+//       <li class="list-group-item">Office Number: ${manager.office} </li>
+//     </ul>
+//   </div>
+//     `
 
 // create the projects section
 // const generateProjects = projectsArr => {
@@ -65,7 +81,7 @@ return
 // };
 
 // export function to generate entire page
-module.exports = page-template
+module.exports = createCard()
 //   // destructure page data by section
 //   const { projects, about, ...header } = templateData;
 
