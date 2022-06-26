@@ -84,93 +84,124 @@ const empQs = [
   },
 ];
 
-const promptManager = () => {
-  return inquirer.prompt(mgrQs).then((answers) => {
-    const { name, id, email, office } = answers;
+function getEmployee() {
 
-    let manager = new Manager(name, id, email, office);
+  getEmployee.prototype.promptManager = function () {
+    return inquirer.prompt(mgrQs).then((answers) => {
+      const { name, id, email, office } = answers;
 
-    // push new manager to employeeArr
-    employeeArr.push(manager);
+      let manager = new Manager(name, id, email, office);
 
-    // if (!employeeArr[0]) {
-    //   return false;
-    // } else {
-    //   console.log(employeeArr)
-    //   return employeeArr;
-    // }
+      // push new manager to employeeArr
+      employeeArr.push(manager);
+
+      // if (!employeeArr[0]) {
+      //   return false;
+      // } else {
+      //   console.log(employeeArr)
+      //   return employeeArr;
+      // }
 
 
 
-    // call the team function
-    getTeam()
+      // call the team function
+      this.getTeam()
 
-  });
-}// end of get manager
+    });
+  }// end of get manager
 
-// now get employees != 'Manager'
-function getTeam() {
-  console.log(
-    `
+  // now get employees != 'Manager'
+  getEmployee.prototype.getTeam = function () {
+    console.log(
+      `
             =============================
             INPUT EMPLOYEE INFORMATION
             =============================
             
             `
-  );
-  inquirer.prompt(empQs).then((answers) => {
-    const { name, id, email } = answers;
-    // based on the role, push an Engineer or push an Intern to employeeArr
-    switch (answers.role) {
-      case "Engineer":
-        const { github } = answers;
-        let engineer = new Engineer(name, id, email, github);
-        employeeArr.push(engineer);
-        // createEngCard(employeeArr);
-        break;
+    );
+    inquirer.prompt(empQs).then((answers) => {
+      const { name, id, email } = answers;
+      // based on the role, push an Engineer or push an Intern to employeeArr
+      switch (answers.role) {
+        case "Engineer":
+          const { github } = answers;
+          let engineer = new Engineer(name, id, email, github);
+          employeeArr.push(engineer);
+          // createEngCard(employeeArr);
+          break;
 
-      case "Intern":
-        const { school } = answers;
-        let intern = new Intern(name, id, email, school);
-        employeeArr.push(intern);
-        // createIntCard(employeeArr);
-        break;
-    }
-    // rinse and repeat
-    if (answers.askAgain) {
-      return getTeam();
-    } else {
-      console.log(employeeArr)
-      splitCardData(employeeArr)
-    }
-  }); // end of getTeam()  
-};
+        case "Intern":
+          const { school } = answers;
+          let intern = new Intern(name, id, email, school);
+          employeeArr.push(intern);
+          // createIntCard(employeeArr);
+          break;
+      }
+      // rinse and repeat
+      if (answers.askAgain) {
+        return this.getTeam();
+      } else {
+        console.log(employeeArr)
+        this.splitCardData(employeeArr);
+      }
+    }); // end of getTeam()  
+  };
 
-function splitCardData(data) {
-  if (!data) {
-    console.log("data is falsy")
-    return
+  getEmployee.prototype.splitCardData = function (data) {
+    if (!data) {
+      console.log("data is falsy")
+      return
+    }
+    const results = data.forEach((employee) => {
+      if (employee.getRole() === "Manager") {
+        mgrArr.push(employee);
+        console.log("this is the manager", mgrArr);
+        return mgrArr
+      }
+
+      if (employee.getRole() === "Engineer") {
+        engArr.push(employee);
+        console.log("this is the engineer array ", engArr)
+        return engArr
+      };
+
+      if (employee.getRole() === "Intern") {
+        intArr.push(employee)
+        console.log("this is the intern array ", intArr)
+        return intArr
+      }
+    })
+
   }
-  const results = data.forEach((employee) => {
-    if (employee.getRole() === "Manager") {
-      mgrArr.push(employee);
-      console.log("this is the manager", mgrArr);
-      return mgrArr
-    }
-
-    if (employee.getRole() === "Engineer") {
-      engArr.push(employee);
-      console.log("this is the engineer array ", engArr)
-      return engArr
-    };
-
-    if (employee.getRole() === "Intern") {
-      intArr.push(employee)
-      console.log("this is the intern array ", intArr)
-      return intArr
-    }
-  })
 };
+
+
+// function splitCardData(data) {
+//   if (!data) {
+//     console.log("data is falsy")
+//     return
+//   }
+//   const results = data.forEach((employee) => {
+//     if (employee.getRole() === "Manager") {
+//       mgrArr.push(employee);
+//       console.log("this is the manager", mgrArr);
+//       return mgrArr
+//     }
+
+//     if (employee.getRole() === "Engineer") {
+//       engArr.push(employee);
+//       console.log("this is the engineer array ", engArr)
+//       return engArr
+//     };
+
+//     if (employee.getRole() === "Intern") {
+//       intArr.push(employee)
+//       console.log("this is the intern array ", intArr)
+//       return intArr
+//     }
+//   })
+// };
 
 // function genHtmlPage(employee) {
 //   let mgrCard = genMgrCard(mgrArr)
@@ -179,7 +210,8 @@ function splitCardData(data) {
 
 // }
 
-promptManager()
+new getEmployee().promptManager()
+// noe I have the employees split out by type.  so Now based on the type I want to build the html. 
 
 
 
