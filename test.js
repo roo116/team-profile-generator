@@ -137,16 +137,18 @@ function getTeam() {
 
   function createCard(data) {
     const results = data.forEach((employee) => {
-      console.log(employee.getRole());
       if (employee.getRole() === "Manager") {
         console.log("It worked!!!");
         mgrArr.push(employee);
-        console.log(mgrArr);
-      } else {
-        console.log("DAMMIT!!!");
-      }
-    });
-  }
+        console.log("this is the manager array", mgrArr);
+      } 
+
+      if (employee.getRole() === "Engineer"){
+      engArr.push(employee);
+      };
+
+
+  });
 }
 // prompt for the team members
 // function getEmployees() {
