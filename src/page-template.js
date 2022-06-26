@@ -1,25 +1,5 @@
 // create the about section
-function createCard(data) {
-  if (!data) {
-    return
-  }
-  const results = data.forEach((employee) => {
-    if (employee.getRole() === "Manager") {
-      htmlArr.push(employee);
-      console.log("this is the manager", htmlArr);
-    }
 
-    if (employee.getRole() === "Engineer") {
-      engArr.push(employee);
-      console.log("this is the engineer array ", htmlArr)
-    };
-
-    if (employee.getRole() === "Intern") {
-      intArr.push(employee)
-      console.log("this is the intern array ", htmlArr)
-    }
-  })
-};
 // const mgrCard = 
 //       ` <div class="card m-1" style="width: 18rem;">
 //     <div class="card-header">

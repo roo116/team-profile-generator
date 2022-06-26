@@ -6,7 +6,7 @@ const { createInterface } = require("readline");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-const generatePage = require("./src/page-template");
+// const generatePage = require("");
 const employeeArr = [];
 const mgrArr = [];
 const engArr = [];
@@ -84,28 +84,29 @@ const empQs = [
   },
 ];
 
-  const promptManager = () => {
-    return inquirer.prompt(mgrQs).then((answers) => {
-      const { name, id, email, office } = answers;
+const promptManager = () => {
+  return inquirer.prompt(mgrQs).then((answers) => {
+    const { name, id, email, office } = answers;
 
-      let manager = new Manager(name, id, email, office);
+    let manager = new Manager(name, id, email, office);
 
-      // push new manager to employeeArr
-      employeeArr.push(manager);
+    // push new manager to employeeArr
+    employeeArr.push(manager);
 
-      if(!employeeArr[0]) {
-        return false;
-      } else {
-        console.log(employeeArr)
-        return employeeArr;
-      }
-        
+    // if (!employeeArr[0]) {
+    //   return false;
+    // } else {
+    //   console.log(employeeArr)
+    //   return employeeArr;
+    // }
 
 
-      // call the team function
 
-    });
-  }// end of get manager
+    // call the team function
+    getTeam()
+
+  });
+}// end of get manager
 
 // now get employees != 'Manager'
 function getTeam() {
@@ -140,12 +141,36 @@ function getTeam() {
       return getTeam();
     } else {
       console.log(employeeArr)
-      return employeeArr;
+      splitCardData(employeeArr)
     }
   }); // end of getTeam()  
 };
 
+function splitCardData(data) {
+  if (!data) {
+    console.log("data is falsy")
+    return
+  }
+  const results = data.forEach((employee) => {
+    if (employee.getRole() === "Manager") {
+      mgrArr.push(employee);
+      console.log("this is the manager", mgrArr);
+      return mgrArr
+    }
 
+    if (employee.getRole() === "Engineer") {
+      engArr.push(employee);
+      console.log("this is the engineer array ", engArr)
+      return engArr
+    };
+
+    if (employee.getRole() === "Intern") {
+      intArr.push(employee)
+      console.log("this is the intern array ", intArr)
+      return intArr
+    }
+  })
+};
 
 // function genHtmlPage(employee) {
 //   let mgrCard = genMgrCard(mgrArr)
@@ -155,7 +180,17 @@ function getTeam() {
 // }
 
 promptManager()
-.then(getTeam)
+
+
+
+
+
+
+  // .then(getTeam)
+  // .then(splitCardData => {
+  //   return splitCardData(employeeArr)
+  // })
+  // .then(splitCardData(employeeArr))
   // .then(createCard(employeeArr))
 // .then(createCard => {
 //   return createCard(employeeArr);
