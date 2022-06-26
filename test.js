@@ -6,12 +6,15 @@ const { createInterface } = require("readline");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-// const generatePage = require("");
-const employeeArr = [];
-const mgrArr = [];
-const engArr = [];
-const intArr = [];
-const genHtml = []
+// const generatePage = require("./src/generateHtml");
+employeeArr = []
+const mgrCardArr = [];
+const engCardArr = [];
+const intCardArr = [];
+const buildHTML = [];
+// const engArr = [];
+// const intArr = [];
+// const buildHtml = []
 
 // manager questions array
 const mgrQs = [
@@ -91,6 +94,7 @@ function getEmployee() {
       const { name, id, email, office } = answers;
 
       let manager = new Manager(name, id, email, office);
+      manager.role = manager.getRole()
 
       // push new manager to employeeArr
       employeeArr.push(manager);
@@ -102,10 +106,11 @@ function getEmployee() {
       //   return employeeArr;
       // }
 
-
-
       // call the team function
       this.getTeam()
+
+
+
 
     });
   }// end of get manager
@@ -127,6 +132,7 @@ function getEmployee() {
         case "Engineer":
           const { github } = answers;
           let engineer = new Engineer(name, id, email, github);
+          engineer.role = engineer.getRole()
           employeeArr.push(engineer);
           // createEngCard(employeeArr);
           break;
@@ -134,6 +140,7 @@ function getEmployee() {
         case "Intern":
           const { school } = answers;
           let intern = new Intern(name, id, email, school);
+          intern.role = intern.getRole();
           employeeArr.push(intern);
           // createIntCard(employeeArr);
           break;
@@ -142,39 +149,126 @@ function getEmployee() {
       if (answers.askAgain) {
         return this.getTeam();
       } else {
-        console.log(employeeArr)
-        this.splitCardData(employeeArr);
+        buildCardArray(employeeArr)
       }
     }); // end of getTeam()  
   };
-
-  getEmployee.prototype.splitCardData = function (data) {
-    if (!data) {
-      console.log("data is falsy")
-      return
-    }
-    const results = data.forEach((employee) => {
-      if (employee.getRole() === "Manager") {
-        mgrArr.push(employee);
-        console.log("this is the manager", mgrArr);
-        return mgrArr
-      }
-
-      if (employee.getRole() === "Engineer") {
-        engArr.push(employee);
-        console.log("this is the engineer array ", engArr)
-        return engArr
-      };
-
-      if (employee.getRole() === "Intern") {
-        intArr.push(employee)
-        console.log("this is the intern array ", intArr)
-        return intArr
-      }
-    })
-
-  }
 };
+
+buildCardArray = (data) => {
+  data.forEach(employee => {
+    if (employee.role === 'Manager') {
+      mgrCardArr.push(employee)
+      console.log(mgrCardArr)
+      createMgrHtml(mgrCardArr)
+    }
+
+    if (employee.role === 'Engineer') {
+      engCardArr.push(employee)
+      console.log(engCardArr)
+    }
+    if (employee.role === 'Intern') {
+      intCardArr.push(employee)
+      console.log(intCardArr)
+    };
+    // createHtmlCards()
+  })
+
+  // cardArr.push(employee.role. employee.name, employee.id, employee.email);
+  // console.log (cardArr)
+}
+
+// createHtmlCards = () => {
+
+createMgrHtml = () => {
+
+  mgrCardArr.forEach(manager => {
+    let mgrHtmlCard = `<div class="card m-1" style="width: 18rem;">
+<div class="card-header">
+  <h2 class="fs-3">${manager.name}</h2>
+  <h3 class="fs-5">${manager.role}}<span><i class="fa-solid fa-mug-hot"></i></span></h3>
+</div>
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">ID: ${manager.id} </li>
+  <li class="list-group-item">Email: ${manager.email} </li>
+  <li class="list-group-item">Office Number: ${manager.office} </li>
+</ul>
+</div>`
+
+    buildHTML.push(mgrHtmlCard)
+
+  })
+  console.log(buildHTML);
+}
+
+
+
+//   let engHtmlCard = `<div class="card m-1" style="width: 18rem;">
+//         <div class="card-header">
+//           <h2 class="fs-3">${engineer.name}</h2>
+//           <h3 class="fs-5">${engineer.role}}<span><i class="fa-solid fa-mug-hot"></i></span></h3>
+//         </div>
+//         <ul class="list-group list-group-flush">
+//           <li class="list-group-item">ID: ${engineer.id} </li>
+//           <li class="list-group-item">Email: ${engineer.email}</li>
+//           <li class="list-group-item">GitHub: ${engineer.github}</li>
+//         </ul>
+//       </div>`
+
+
+//   let intHtmlCard = `<div class="card m-1" style="width: 18rem;">
+//       <div class="card-header">
+//         <h2 class="fs-3">${intern.name}</h2>
+//         <h3 class="fs-5">${intern.role}}<span><i class="fa-solid fa-mug-hot"></i></span></h3>
+//       </div>
+//       <ul class="list-group list-group-flush">
+//         <li class="list-group-item">ID: ${intern.id}</li>
+//         <li class="list-group-item">Email: ${intern.email}</li>
+//         <li class="list-group-item">School: ${intern.school}</li>
+//       </ul>
+//     </div>`
+
+
+
+//   engCardArr.forEach(engineer => {
+//     buildHTML.push(engHtmlCard);
+//   })
+
+//   intCardArr.forEach(intern => {
+//     buildHTML.push(intHtmlCard);
+//   })
+//   n
+//   console.log(buildHTML)
+
+// };
+
+// getEmployee.prototype.splitCardData = function (data) {
+//   if (!data) {
+//     console.log("data is falsy")
+//     return
+//   }
+//   const results = data.forEach((employee) => {
+//     if (employee.getRole() === "Manager") {
+//       cardArr.push(employee);
+//       console.log("this is the manager", mgrArr);
+//       return mgrArr
+//     }
+
+//     if (employee.getRole() === "Engineer") {
+//       engArr.push(employee);
+//       console.log("this is the engineer array ", engArr)
+//       return engArr
+//     };
+
+//     if (employee.getRole() === "Intern") {
+//       intArr.push(employee)
+//       console.log("this is the intern array ", intArr)
+//       return intArr
+//     }
+//   })
+
+
+
 
 
 // function splitCardData(data) {
@@ -211,7 +305,10 @@ function getEmployee() {
 // }
 
 new getEmployee().promptManager()
-// noe I have the employees split out by type.  so Now based on the type I want to build the html. 
+// noe I have the employees split out by type.  so Now based on the type I want to build the html.
+// .then(buildHtml => {
+//   return generatePage(mgrArr)
+// })
 
 
 
