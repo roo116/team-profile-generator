@@ -6,12 +6,12 @@ const { createInterface } = require("readline");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-const createMgrCard = require("./src/generateHtml");
-const generateHtml = require("./src/generateHtml");
+const generatePage = require("./src/generateHtml");
 const employeeArr = [];
 const mgrArr = [];
 const engArr = [];
 const intArr = [];
+const genHtml = []
 
 // manager questions array
 const mgrQs = [
@@ -94,7 +94,8 @@ function getManager() {
     employeeArr.push(manager);
 
     // call the team function
-    getTeam();
+    // getTeam();
+    createCard(employeeArr)
   });
 } // end of get manager
 
@@ -110,7 +111,6 @@ function getTeam() {
   );
   inquirer.prompt(empQs).then((answers) => {
     const { name, id, email } = answers;
-    console.log("answers = ", answers);
     // based on the role, push an Engineer or push an Intern to employeeArr
     switch (answers.role) {
       case "Engineer":
@@ -133,23 +133,37 @@ function getTeam() {
     } else {
       createCard(employeeArr);
     }
-  }); // end of getTeam()
+  }); // end of getTeam()  
+};
 
-  function createCard(data) {
-    const results = data.forEach((employee) => {
-      if (employee.getRole() === "Manager") {
-        console.log("It worked!!!");
-        mgrArr.push(employee);
-        console.log("this is the manager array", mgrArr);
-      } 
+function createCard(data) {
+  const results = data.forEach((employee) => {
+    if (employee.getRole() === "Manager") {
+      mgrArr.push(employee);
+      console.log("this is the manager array", mgrArr);
+    }
 
-      if (employee.getRole() === "Engineer"){
+    if (employee.getRole() === "Engineer") {
       engArr.push(employee);
-      };
+      console.log("this is the engineer array ", engArr)
+    };
 
+    if (employee.getRole() === "Intern") {
+      intArr.push(employee)
+      console.log("this is the intern array ", intArr)
+    }
+    genMgrCard(mgrArr);
+    })
+  };
 
-  });
-}
+// function genHtmlPage(employee) {
+//   let mgrCard = genMgrCard(mgrArr)
+//   genHtml.push(mgrCard)
+//   console.log(genHtml)
+
+// }
+
+getManager()
 // prompt for the team members
 // function getEmployees() {
 //   // starts with manager
@@ -221,11 +235,7 @@ function getTeam() {
 //     boilerPlateHtml();
 //   }
 
-function init() {
-  getManager();
-}
 
-init();
 
 // const getArrData = () =>{
 
