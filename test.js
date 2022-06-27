@@ -159,16 +159,14 @@ buildCardArray = (data) => {
   data.forEach(employee => {
     if (employee.role === 'Manager') {
       mgrCardArr.push(employee)
-      console.log(mgrCardArr)
       createMgrHtml(mgrCardArr)
     }
 
     if (employee.role === 'Engineer') {
       engCardArr.push(employee)
-      console.log(engCardArr)
+      createEngHtml(engCardArr);
     }
     if (employee.role === 'Intern') {
-      intCardArr.push(employee)
       console.log(intCardArr)
     };
     // createHtmlCards()
@@ -186,7 +184,7 @@ createMgrHtml = () => {
     let mgrHtmlCard = `<div class="card m-1" style="width: 18rem;">
 <div class="card-header">
   <h2 class="fs-3">${manager.name}</h2>
-  <h3 class="fs-5">${manager.role}}<span><i class="fa-solid fa-mug-hot"></i></span></h3>
+  <h3 class="fs-5">${manager.role}<span><i class="fa-solid fa-mug-hot"></i></span></h3>
 </div>
 <ul class="list-group list-group-flush">
   <li class="list-group-item">ID: ${manager.id} </li>
@@ -201,7 +199,25 @@ createMgrHtml = () => {
   console.log(buildHTML);
 }
 
+createEngHtml = () => {
 
+  engCardArr.forEach(engineer => {
+    let engHtmlCard = `<div class="card m-1" style="width: 18rem;">
+         <div class="card-header">
+           <h2 class="fs-3">${engineer.name}</h2>
+          <h3 class="fs-5">${engineer.role}<span><i class="fa-solid fa-mug-hot"></i></span></h3>
+         </div>
+         <ul class="list-group list-group-flush">
+          <li class="list-group-item">ID: ${engineer.id} </li>
+          <li class="list-group-item">Email: ${engineer.email}</li>
+           <li class="list-group-item">GitHub: ${engineer.github}</li>
+        </ul>
+      </div>`
+
+    buildHTML.push(engHtmlCard)
+  })
+  console.log(buildHTML)
+}
 
 //   let engHtmlCard = `<div class="card m-1" style="width: 18rem;">
 //         <div class="card-header">

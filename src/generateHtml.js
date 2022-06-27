@@ -107,5 +107,9 @@ genMgrCard(manager);
 //}
 
 
-
-// module.exports = genMgrCard
+// module.exports = {
+//   filterByQuery,
+//   findById,
+//   createNewAnimal,
+//   validateAnimal
+// };
