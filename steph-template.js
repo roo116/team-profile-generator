@@ -1,5 +1,5 @@
 //get array of managers
-const getManagerData = (data) => {
+const genManagerCard = (data) => {
   const managerEmps = data.filter((emp) => {
     if (data.role === "Manager") {
       return true;
