@@ -7,11 +7,12 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 // const generatePage = require("./src/generateHtml");
-employeeArr = []
+employeeArr = [];
 const mgrCardArr = [];
 const engCardArr = [];
 const intCardArr = [];
 const buildHTML = [];
+buildengHTML = [];
 // const engArr = [];
 // const intArr = [];
 // const buildHtml = []
@@ -88,13 +89,12 @@ const empQs = [
 ];
 
 function getEmployee() {
-
   getEmployee.prototype.promptManager = function () {
     return inquirer.prompt(mgrQs).then((answers) => {
       const { name, id, email, office } = answers;
 
       let manager = new Manager(name, id, email, office);
-      manager.role = manager.getRole()
+      manager.role = manager.getRole();
 
       // push new manager to employeeArr
       employeeArr.push(manager);
@@ -107,13 +107,9 @@ function getEmployee() {
       // }
 
       // call the team function
-      this.getTeam()
-
-
-
-
+      this.getTeam();
     });
-  }// end of get manager
+  }; // end of get manager
 
   // now get employees != 'Manager'
   getEmployee.prototype.getTeam = function () {
@@ -132,7 +128,7 @@ function getEmployee() {
         case "Engineer":
           const { github } = answers;
           let engineer = new Engineer(name, id, email, github);
-          engineer.role = engineer.getRole()
+          engineer.role = engineer.getRole();
           employeeArr.push(engineer);
           // createEngCard(employeeArr);
           break;
@@ -149,38 +145,36 @@ function getEmployee() {
       if (answers.askAgain) {
         return this.getTeam();
       } else {
-        buildCardArray(employeeArr)
+        buildCardArray(employeeArr);
       }
-    }); // end of getTeam()  
+    }); // end of getTeam()
   };
-};
+}
 
 buildCardArray = (data) => {
-  data.forEach(employee => {
-    if (employee.role === 'Manager') {
-      mgrCardArr.push(employee)
-      createMgrHtml(mgrCardArr)
+  data.forEach((employee) => {
+    if (employee.role === "Manager") {
+      mgrCardArr.push(employee);
+      // createMgrHtml(mgrCardArr);
     }
 
-    if (employee.role === 'Engineer') {
-      engCardArr.push(employee)
-      createEngHtml(engCardArr);
+    if (employee.role === "Engineer") {
+      engCardArr.push(employee);
     }
-    if (employee.role === 'Intern') {
-      console.log(intCardArr)
-    };
-    // createHtmlCards()
-  })
+    if (employee.role === "Intern") {
+      console.log(intCardArr);
+    }
+  });
 
-  // cardArr.push(employee.role. employee.name, employee.id, employee.email);
-  // console.log (cardArr)
-}
+  createMgrHtml(mgrCardArr);
+  createEngHtml(engCardArr);
+  // createIntHtml(intCardArr);
+};
 
 // createHtmlCards = () => {
 
 createMgrHtml = () => {
-
-  mgrCardArr.forEach(manager => {
+  mgrCardArr.forEach((manager) => {
     let mgrHtmlCard = `<div class="card m-1" style="width: 18rem;">
 <div class="card-header">
   <h2 class="fs-3">${manager.name}</h2>
@@ -191,17 +185,15 @@ createMgrHtml = () => {
   <li class="list-group-item">Email: ${manager.email} </li>
   <li class="list-group-item">Office Number: ${manager.office} </li>
 </ul>
-</div>`
+</div>`;
 
-    buildHTML.push(mgrHtmlCard)
-
-  })
+    buildHTML.push(mgrHtmlCard);
+  });
   console.log(buildHTML);
-}
+};
 
 createEngHtml = () => {
-
-  engCardArr.forEach(engineer => {
+  engCardArr.forEach((engineer) => {
     let engHtmlCard = `<div class="card m-1" style="width: 18rem;">
          <div class="card-header">
            <h2 class="fs-3">${engineer.name}</h2>
@@ -212,13 +204,32 @@ createEngHtml = () => {
           <li class="list-group-item">Email: ${engineer.email}</li>
            <li class="list-group-item">GitHub: ${engineer.github}</li>
         </ul>
-      </div>`
+      </div>`;
+    buildHTML.push(engHtmlCard);
+  });
+  console.log(buildHTML);
+};
 
-    buildHTML.push(engHtmlCard)
-  })
-  console.log(buildHTML)
-}
+createIntHtml = () => {
+  intCardArr.forEach((intern) => {
+    let intHtmlCard = `<div class="card m-1" style="width: 18rem;">
+    <div class="card-header">
+      <h2 class="fs-3">${intern.name}</h2>
+     <h3 class="fs-5">${intern.role}<span><i class="fa-solid fa-mug-hot"></i></span></h3>
+    </div>
+    <ul class="list-group list-group-flush">
+     <li class="list-group-item">ID: ${intern.id} </li>
+     <li class="list-group-item">Email: ${intern.email}</li>
+      <li class="list-group-item">GitHub: ${intern.github}</li>
+   </ul>
+  </div>`;
 
+    buildHTML.push(intHtmlCard);
+  });
+  console.log(buildHTML);
+};
+
+generatePage = (arr) => {};
 //   let engHtmlCard = `<div class="card m-1" style="width: 18rem;">
 //         <div class="card-header">
 //           <h2 class="fs-3">${engineer.name}</h2>
@@ -231,7 +242,6 @@ createEngHtml = () => {
 //         </ul>
 //       </div>`
 
-
 //   let intHtmlCard = `<div class="card m-1" style="width: 18rem;">
 //       <div class="card-header">
 //         <h2 class="fs-3">${intern.name}</h2>
@@ -243,8 +253,6 @@ createEngHtml = () => {
 //         <li class="list-group-item">School: ${intern.school}</li>
 //       </ul>
 //     </div>`
-
-
 
 //   engCardArr.forEach(engineer => {
 //     buildHTML.push(engHtmlCard);
@@ -283,10 +291,6 @@ createEngHtml = () => {
 //     }
 //   })
 
-
-
-
-
 // function splitCardData(data) {
 //   if (!data) {
 //     console.log("data is falsy")
@@ -320,23 +324,18 @@ createEngHtml = () => {
 
 // }
 
-new getEmployee().promptManager()
+new getEmployee().promptManager();
 // noe I have the employees split out by type.  so Now based on the type I want to build the html.
 // .then(buildHtml => {
 //   return generatePage(mgrArr)
 // })
 
-
-
-
-
-
-  // .then(getTeam)
-  // .then(splitCardData => {
-  //   return splitCardData(employeeArr)
-  // })
-  // .then(splitCardData(employeeArr))
-  // .then(createCard(employeeArr))
+// .then(getTeam)
+// .then(splitCardData => {
+//   return splitCardData(employeeArr)
+// })
+// .then(splitCardData(employeeArr))
+// .then(createCard(employeeArr))
 // .then(createCard => {
 //   return createCard(employeeArr);
 // })
@@ -410,8 +409,6 @@ new getEmployee().promptManager()
 //   function buildHTML() {
 //     boilerPlateHtml();
 //   }
-
-
 
 // const getArrData = () =>{
 
