@@ -6,7 +6,7 @@ const { createInterface } = require("readline");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-// const generatePage = require("./src/generateHtml");
+const generatePage = require("./src/generateHtml");
 employeeArr = [];
 const mgrCardArr = [];
 const engCardArr = [];
@@ -162,28 +162,28 @@ buildCardArray = (data) => {
       engCardArr.push(employee);
     }
     if (employee.role === "Intern") {
-      console.log(intCardArr);
+      intCardArr.push(employee)
     }
   });
 
   createMgrHtml(mgrCardArr);
   createEngHtml(engCardArr);
-  // createIntHtml(intCardArr);
+  createIntHtml(intCardArr);
 };
 
 // createHtmlCards = () => {
 
 createMgrHtml = () => {
   mgrCardArr.forEach((manager) => {
-    let mgrHtmlCard = `<div class="card m-1" style="width: 18rem;">
-<div class="card-header">
+    let mgrHtmlCard = `<div class="card m-1" style="width: 20rem;">
+<div class="card-header bg-primary text-white">
   <h2 class="fs-3">${manager.name}</h2>
-  <h3 class="fs-5">${manager.role}<span><i class="fa-solid fa-mug-hot"></i></span></h3>
+  <h3 class="fs-5">${manager.role} <span><i class="fa-solid fa-mug-hot"></i></span></h3>
 </div>
 <ul class="list-group list-group-flush">
-  <li class="list-group-item">ID: ${manager.id} </li>
-  <li class="list-group-item">Email: ${manager.email} </li>
-  <li class="list-group-item">Office Number: ${manager.office} </li>
+  <li class="list-group-item fw-bold">ID: ${manager.id} </li>
+  <li class="list-group-item fw-bold">Email: ${manager.email} </li>
+  <li class="list-group-item fw-bold">Office Number: ${manager.office} </li>
 </ul>
 </div>`;
 
@@ -194,15 +194,15 @@ createMgrHtml = () => {
 
 createEngHtml = () => {
   engCardArr.forEach((engineer) => {
-    let engHtmlCard = `<div class="card m-1" style="width: 18rem;">
-         <div class="card-header">
+    let engHtmlCard = `<div class="card m-1" style="width: 20rem;">
+         <div class="card-header bg-primary text-white">
            <h2 class="fs-3">${engineer.name}</h2>
-          <h3 class="fs-5">${engineer.role}<span><i class="fa-solid fa-mug-hot"></i></span></h3>
+          <h3 class="fs-5">${engineer.role} <span><i class="fa-solid fa-glasses"></i></span></h3>
          </div>
          <ul class="list-group list-group-flush">
-          <li class="list-group-item">ID: ${engineer.id} </li>
-          <li class="list-group-item">Email: ${engineer.email}</li>
-           <li class="list-group-item">GitHub: ${engineer.github}</li>
+          <li class="list-group-item fw-bold">ID: ${engineer.id} </li>
+          <li class="list-group-item fw-bold">Email: ${engineer.email}</li>
+           <li class="list-group-item fw-bold">GitHub: <a href=https://github.com/${engineer.github} target="_blank">https://github.com/${engineer.github}</a></li>
         </ul>
       </div>`;
     buildHTML.push(engHtmlCard);
@@ -212,15 +212,15 @@ createEngHtml = () => {
 
 createIntHtml = () => {
   intCardArr.forEach((intern) => {
-    let intHtmlCard = `<div class="card m-1" style="width: 18rem;">
-    <div class="card-header">
+    let intHtmlCard = `<div class="card m-1" style="width: 20rem;">
+    <div class="card-header bg-primary text-white">
       <h2 class="fs-3">${intern.name}</h2>
-     <h3 class="fs-5">${intern.role}<span><i class="fa-solid fa-mug-hot"></i></span></h3>
+     <h3 class="fs-5">${intern.role} <span><i class="fa-solid fa-graduation-cap"></i></span></h3>
     </div>
     <ul class="list-group list-group-flush">
-     <li class="list-group-item">ID: ${intern.id} </li>
-     <li class="list-group-item">Email: ${intern.email}</li>
-      <li class="list-group-item">GitHub: ${intern.github}</li>
+     <li class="list-group-item fw-bold">ID: ${intern.id} </li>
+     <li class="list-group-item fw-bold">Email: ${intern.email}</li>
+      <li class="list-group-item fw-bold">GitHub: ${intern.school}</li>
    </ul>
   </div>`;
 
@@ -324,7 +324,8 @@ generatePage = (arr) => {};
 
 // }
 
-new getEmployee().promptManager();
+new getEmployee().promptManager()
+// .then(generateCrdSection(buildHTML))
 // noe I have the employees split out by type.  so Now based on the type I want to build the html.
 // .then(buildHtml => {
 //   return generatePage(mgrArr)
