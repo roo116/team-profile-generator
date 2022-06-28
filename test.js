@@ -6,7 +6,7 @@ const { createInterface } = require("readline");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
-const generatePage = require("./src/generateHtml");
+const { generateCrdSection, generatePage } = require("./src/generateHtml");
 employeeArr = [];
 const mgrCardArr = [];
 const engCardArr = [];
@@ -162,7 +162,7 @@ buildCardArray = (data) => {
       engCardArr.push(employee);
     }
     if (employee.role === "Intern") {
-      intCardArr.push(employee)
+      intCardArr.push(employee);
     }
   });
 
@@ -226,10 +226,16 @@ createIntHtml = () => {
 
     buildHTML.push(intHtmlCard);
   });
-  console.log(buildHTML);
+  
+  genHtml(buildHTML)
+
+  
 };
 
-generatePage = (arr) => {};
+genHtml = (arr) => {
+const empCards = generateCrdSection(arr);
+ generatePage(empCards);
+};
 //   let engHtmlCard = `<div class="card m-1" style="width: 18rem;">
 //         <div class="card-header">
 //           <h2 class="fs-3">${engineer.name}</h2>
@@ -324,7 +330,7 @@ generatePage = (arr) => {};
 
 // }
 
-new getEmployee().promptManager()
+new getEmployee().promptManager();
 // .then(generateCrdSection(buildHTML))
 // noe I have the employees split out by type.  so Now based on the type I want to build the html.
 // .then(buildHtml => {

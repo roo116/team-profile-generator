@@ -32,10 +32,10 @@ const bottomHtml = `
 </html>
     `;
 
-
 generateCrdSection = (arr) => {
   const empCards = arr.join("");
-  generatePage(empCards);
+  // generatePage(empCards);
+  return empCards
 };
 
 generatePage = (html) => {
@@ -44,18 +44,21 @@ generatePage = (html) => {
   pageHTML = pageHTML.join("");
   console.log(pageHTML);
 
-  fs.writeFileSync("../dist/index.html", pageHTML, (err) => {
+  fs.writeFileSync("./dist/index.html", pageHTML, (err) => {
     if (err) {
-      console.log(err)
+      console.log(err);
       return;
     }
-    console.log("Did it work?")
-  })
+    console.log("Did it work?");
+  });
 };
 
-generateCrdSection();
+// generateCrdSection();
 
-module.exports = generateCrdSection
+module.exports = {
+  generateCrdSection,
+  generatePage
+};
 // fs.writeFile("./dist/index.html", pageHTML, (err) => {
 //   if (err) {
 //     console.log(err);
