@@ -42,14 +42,13 @@ generatePage = (html) => {
   let pageHTML = [];
   pageHTML.push(topHtml, html, bottomHtml);
   pageHTML = pageHTML.join("");
-  console.log(pageHTML);
 
   fs.writeFileSync("./dist/index.html", pageHTML, (err) => {
     if (err) {
       console.log(err);
       return;
     }
-    console.log("Did it work?");
+    console.log("Page is created!");
   });
 };
 

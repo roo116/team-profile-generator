@@ -182,14 +182,13 @@ createMgrHtml = () => {
 </div>
 <ul class="list-group list-group-flush">
   <li class="list-group-item fw-bold">ID: ${manager.id} </li>
-  <li class="list-group-item fw-bold">Email: ${manager.email} </li>
+  <li class="list-group-item fw-bold">Email: <a href=mailto:${manager.email} class="fw-normal">${manager.email}</a></li>
   <li class="list-group-item fw-bold">Office Number: ${manager.office} </li>
 </ul>
 </div>`;
 
     buildHTML.push(mgrHtmlCard);
   });
-  console.log(buildHTML);
 };
 
 createEngHtml = () => {
@@ -201,13 +200,12 @@ createEngHtml = () => {
          </div>
          <ul class="list-group list-group-flush">
           <li class="list-group-item fw-bold">ID: ${engineer.id} </li>
-          <li class="list-group-item fw-bold">Email: ${engineer.email}</li>
-           <li class="list-group-item fw-bold">GitHub: <a href=https://github.com/${engineer.github} target="_blank">https://github.com/${engineer.github}</a></li>
+          <li class="list-group-item fw-bold">Email: <a href=mailto:${engineer.email} class="fw-normal">${engineer.email}</a></li>
+           <li class="list-group-item fw-bold">GitHub: <a href=https://github.com/${engineer.github} target="_blank">${engineer.github}</a></li>
         </ul>
       </div>`;
     buildHTML.push(engHtmlCard);
   });
-  console.log(buildHTML);
 };
 
 createIntHtml = () => {
@@ -219,12 +217,13 @@ createIntHtml = () => {
     </div>
     <ul class="list-group list-group-flush">
      <li class="list-group-item fw-bold">ID: ${intern.id} </li>
-     <li class="list-group-item fw-bold">Email: ${intern.email}</li>
-      <li class="list-group-item fw-bold">GitHub: ${intern.school}</li>
+     <li class="list-group-item fw-bold">Email: <a href=mailto:${intern.email} class="fw-normal">${intern.email}</a></li>
+     <li class="list-group-item fw-bold">School: ${intern.school}</li>
    </ul>
   </div>`;
 
     buildHTML.push(intHtmlCard);
+    console.log(intHtmlCard);
   });
   
   genHtml(buildHTML)
