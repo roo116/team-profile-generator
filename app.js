@@ -151,25 +151,43 @@ function getEmployee() {
   };
 }
 
-buildCardArray = (data) => {
-  data.forEach((employee) => {
+buildCardArray = (arr) => {
+  let cardArr = [];
+  arr.forEach((employee) => {
     if (employee.role === "Manager") {
-      mgrCardArr.push(employee);
+      cardArr.push(employee);
       // createMgrHtml(mgrCardArr);
     }
 
     if (employee.role === "Engineer") {
-      engCardArr.push(employee);
+      cardArr.push(employee);
     }
     if (employee.role === "Intern") {
-      intCardArr.push(employee);
+      cardArr.push(employee);
     }
+    console.log(cardArr);
+    return cardArr
   });
-
-  createMgrHtml(mgrCardArr);
-  createEngHtml(engCardArr);
-  createIntHtml(intCardArr);
 };
+// buildCardArray = (data) => {
+//   data.forEach((employee) => {
+//     if (employee.role === "Manager") {
+//       mgrCardArr.push(employee);
+//       // createMgrHtml(mgrCardArr);
+//     }
+
+//     if (employee.role === "Engineer") {
+//       engCardArr.push(employee);
+//     }
+//     if (employee.role === "Intern") {
+//       intCardArr.push(employee);
+//     }
+//   });
+
+//   createMgrHtml(mgrCardArr);
+//   createEngHtml(engCardArr);
+//   createIntHtml(intCardArr);
+// };
 
 // createHtmlCards = () => {
 

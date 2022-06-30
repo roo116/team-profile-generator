@@ -1,4 +1,5 @@
 const fs = require("fs");
+const Employee = require("../lib/Employee");
 const topHtml = `
 <!DOCTYPE html>
 <html lang="en">
@@ -31,41 +32,79 @@ const bottomHtml = `
 
 </html>
     `;
+let buildHTML = []
 
-generateCrdSection = (arr) => {
-  const empCards = arr.join("");
-  // generatePage(empCards);
-  return empCards
+function buildCardsArr(arr) {
+  arr.forEach(employee => {
+    if (employee.role === "Manager") {
+      let manager = employee
+      let mgrHtmlCard = `<div class="card m-1" style="width: 20rem;">
+  <div class="card-header bg-primary text-white">
+    <h2 class="fs-3">${manager.name}</h2>
+    <h3 class="fs-5">${manager.role} <span><i class="fa-solid fa-mug-hot"></i></span></h3>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item fw-bold">ID: ${manager.id} </li>
+    <li class="list-group-item fw-bold">Email: <a href=mailto:${manager.email} class="fw-normal">${manager.email}</a></li>
+    <li class="list-group-item fw-bold">Office Number: ${manager.office} </li>
+  </ul>
+  </div>`;
+
+      buildHTML.push(mgrHtmlCard)
+    };
+
+    if (employee.role === "Engineer") {
+      let engineer = employee;
+      let engHtmlCard = `<div class="card m-1" style="width: 20rem;">
+             <div class="card-header bg-primary text-white">
+               <h2 class="fs-3">${engineer.name}</h2>
+              <h3 class="fs-5">${engineer.role} <span><i class="fa-solid fa-glasses"></i></span></h3>
+             </div>
+             <ul class="list-group list-group-flush">
+              <li class="list-group-item fw-bold">ID: ${engineer.id} </li>
+              <li class="list-group-item fw-bold">Email: <a href=mailto:${engineer.email} class="fw-normal">${engineer.email}</a></li>
+               <li class="list-group-item fw-bold">GitHub: <a href=https://github.com/${engineer.github} target="_blank">${engineer.github}</a></li>
+            </ul>
+          </div>`;
+
+      buildHTML.push(engHtmlCard);
+    };
+
+    if (employee.role === "Intern") {
+      let intern = employee;
+      let intHtmlCard = `<div class="card m-1" style="width: 20rem;">
+        <div class="card-header bg-primary text-white">
+          <h2 class="fs-3">${intern.name}</h2>
+         <h3 class="fs-5">${intern.role} <span><i class="fa-solid fa-graduation-cap"></i></span></h3>
+        </div>
+        <ul class="list-group list-group-flush">
+         <li class="list-group-item fw-bold">ID: ${intern.id} </li>
+         <li class="list-group-item fw-bold">Email: <a href=mailto:${intern.email} class="fw-normal">${intern.email}</a></li>
+         <li class="list-group-item fw-bold">School: ${intern.school}</li>
+       </ul>
+      </div>`;
+
+      buildHTML.push(intHtmlCard);
+
+    };
+  });
+  results = buildHTML.join("");
+  return results
 };
 
-generatePage = (html) => {
-  let pageHTML = [];
-  pageHTML.push(topHtml, html, bottomHtml);
-  pageHTML = pageHTML.join("");
+function generatePage(html) {
+  let pageHTML = topHtml + html + bottomHtml
 
   fs.writeFileSync("./dist/index.html", pageHTML, (err) => {
     if (err) {
       console.log(err);
       return;
-    }
-    console.log("Page is created!");
+    } else
+      console.log("SUCCESS!!")
   });
 };
 
-// generateCrdSection();
-
 module.exports = {
-  generateCrdSection,
+  buildCardsArr,
   generatePage
 };
-// fs.writeFile("./dist/index.html", pageHTML, (err) => {
-//   if (err) {
-//     console.log(err);
-//     return;
-//   }
-//   console.log(
-//     "Page created! Check out index.html in this directory to see it!"
-//   );
-// });
-
-//

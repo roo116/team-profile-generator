@@ -1,8 +1,8 @@
 const { generatePrime } = require("crypto");
 const fs = require("fs");
-const buildHTML = 
-[
-  '<div class="card m-1" style="width: 20rem;">\n' +
+const buildHTML =
+  [
+    '<div class="card m-1" style="width: 20rem;">\n' +
     '<div class="card-header bg-primary text-white">\n' +
     '  <h2 class="fs-3">The Boss</h2>\n' +
     '  <h3 class="fs-5">Manager <span><i class="fa-solid fa-mug-hot"></i></span></h3>\n' +
@@ -13,7 +13,7 @@ const buildHTML =
     '  <li class="list-group-item fw-bold">Office Number: 100 </li>\n' +
     '</ul>\n' +
     '</div>',
-  '<div class="card m-1" style="width: 20rem;">\n' +
+    '<div class="card m-1" style="width: 20rem;">\n' +
     '         <div class="card-header bg-primary text-white">\n' +
     '           <h2 class="fs-3">Dilbert</h2>\n' +
     '          <h3 class="fs-5">Engineer <span><i class="fa-solid fa-glasses"></i></span></h3>\n' +
@@ -24,7 +24,7 @@ const buildHTML =
     '           <li class="list-group-item fw-bold">GitHub: <a href=https://github.com/dilbert target="_blank">https://github.com/dilbert</a></li>\n' +
     '        </ul>\n' +
     '      </div>',
-  '<div class="card m-1" style="width: 20rem;">\n' +
+    '<div class="card m-1" style="width: 20rem;">\n' +
     '         <div class="card-header bg-primary text-white">\n' +
     '           <h2 class="fs-3">Alice</h2>\n' +
     '          <h3 class="fs-5">Engineer <span><i class="fa-solid fa-glasses"></i></span></h3>\n' +
@@ -35,7 +35,7 @@ const buildHTML =
     '           <li class="list-group-item fw-bold">GitHub: <a href=https://github.com/alice target="_blank">https://github.com/alice</a></li>\n' +
     '        </ul>\n' +
     '      </div>',
-  '<div class="card m-1" style="width: 20rem;">\n' +
+    '<div class="card m-1" style="width: 20rem;">\n' +
     '         <div class="card-header bg-primary text-white">\n' +
     '           <h2 class="fs-3">Wally</h2>\n' +
     '          <h3 class="fs-5">Engineer <span><i class="fa-solid fa-glasses"></i></span></h3>\n' +
@@ -46,7 +46,7 @@ const buildHTML =
     '           <li class="list-group-item fw-bold">GitHub: <a href=https://github.com/wally target="_blank">https://github.com/wally</a></li>\n' +
     '        </ul>\n' +
     '      </div>',
-     '<div class="card m-1" style="width: 20rem;">\n' +
+    '<div class="card m-1" style="width: 20rem;">\n' +
     '    <div class="card-header bg-primary text-white">\n' +
     '      <h2 class="fs-3">Asok</h2>\n' +
     '     <h3 class="fs-5">Intern <span><i class="fa-solid fa-graduation-cap"></i></span></h3>\n' +
@@ -57,7 +57,7 @@ const buildHTML =
     '      <li class="list-group-item fw-bold">GitHub: I.I.T.</li>\n' +
     '   </ul>\n' +
     '  </div>'
-]
+  ]
 
 const topHtml = `
 <!DOCTYPE html>
@@ -92,6 +92,16 @@ const bottomHtml = `
 </html>
     `;
 
+
+
+  //   createMgrHtml(mgrCardArr);
+  //   createEngHtml(engCardArr);
+  //   createIntHtml(intCardArr);
+};
+
+
+// buildCardArray(buildHTML);
+
 generateCrdSection = (arr) => {
   const empCards = arr.join("");
   generatePage(empCards);
@@ -112,12 +122,12 @@ generatePage = (html) => {
   });
 };
 
-generateCrdSection(buildHTML);
+// generateCrdSection(buildHTML);
 
 // module.exports = {
-//   generateCrdSection,
-//   generatePage
-// };
+
+// //   generatePage
+//  };
 // fs.writeFile("./dist/index.html", pageHTML, (err) => {
 //   if (err) {
 //     console.log(err);
