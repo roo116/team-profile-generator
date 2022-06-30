@@ -100,7 +100,7 @@ function generatePage(html) {
       console.log(err);
       return;
     } else
-      console.log("SUCCESS!!")
+      return true;
   });
 };
 

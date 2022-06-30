@@ -133,6 +133,17 @@ function getEmployee() {
       } else {
         let cards = buildCardsArr(employeeArr);
         generatePage(cards);
+        if(generatePage) {
+          console.log(
+            `
+            ============================================================
+            The index.html file is in the ./dist folder.  Check it out!!
+            ============================================================
+            
+            `)
+        } else {
+          console.log("Oops. Something went wrong.  Just walk away.  You didn't see anything.")
+        }
       }
     }); // end of getTeam()
 
