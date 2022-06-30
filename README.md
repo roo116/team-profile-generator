@@ -26,7 +26,7 @@ run `npm i` at the command prompt.
 ## Usage
 
 Video Demonstration:  
-https://drive.google.com/file/d/1g-xAjvPzv7yALMzdqAOPeIqJ_BhWX9fZ/view?usp=sharing
+https://drive.google.com/file/d/14Znq1b45EV_Q2FFTqANyHEQZBjxP8UFt/view?usp=sharing
 
 Type `node index` at the command prompt and answer the questions.  
 The assumption is only the manager of the team will be entering this information. As a result the first set of questions are specific to the user entering the answers.  
@@ -53,6 +53,7 @@ no contribution information at present.
 Tests were performed to ensure objects would create successfully, using Jest.  
 
 Here is the video output of those tests. 
+https://drive.google.com/file/d/1rpYmaQZgZBgXtS_oykIN5vuU1MHK3RXj/view?usp=sharing
 
 ## Questions
 
