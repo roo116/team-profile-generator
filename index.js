@@ -133,7 +133,7 @@ function getEmployee() {
       } else {
         let cards = buildCardsArr(employeeArr);
         generatePage(cards);
-        if(generatePage) {
+        if (generatePage) {
           console.log(
             `
             ============================================================
@@ -146,13 +146,6 @@ function getEmployee() {
         }
       }
     }); // end of getTeam()
-
-    // generate the employee card HTML
-
-
-    // create the index.html file
-
-
   };
 }
 

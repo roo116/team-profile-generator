@@ -34,6 +34,7 @@ const bottomHtml = `
     `;
 let buildHTML = []
 
+// create the cards
 function buildCardsArr(arr) {
   arr.forEach(employee => {
     if (employee.role === "Manager") {
@@ -92,6 +93,7 @@ function buildCardsArr(arr) {
   return results
 };
 
+// write the page
 function generatePage(html) {
   let pageHTML = topHtml + html + bottomHtml
 
